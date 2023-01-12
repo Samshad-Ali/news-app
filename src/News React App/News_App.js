@@ -7,7 +7,7 @@ const News_App = () => {
   const [query, setQuery] = useState("tesla");
   const [info, setInfo] = useState("India");
   const queryDataref = useRef(null);
-
+ const [input,setInput]=useState('')
   const apiKey = "ef5b66227eac4ea68f6b04522c4ca1d6";
   const apiURL = `  https://newsapi.org/v2/everything?q=${query}&from=2022-12-12&sortBy=publishedAt&apiKey=ef5b66227eac4ea68f6b04522c4ca1d6
   `;
@@ -28,8 +28,8 @@ const News_App = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const textValue = queryDataref.current.value;
-    setQuery(textValue);
+    setQuery(input);
+    setInput('')
   }
 
   function handleBtn(e) {
@@ -43,7 +43,8 @@ const News_App = () => {
         <div className="search-box">
           <input
             type="text"
-            ref={queryDataref}
+            onChange={(e) => { setInput(e.target.value) }}
+            value={input}
             placeholder="Search the news here"
             className="search"
           />
@@ -99,3 +100,4 @@ const News_App = () => {
 };
 
 export default News_App;
+
